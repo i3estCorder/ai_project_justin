@@ -1,0 +1,9 @@
+{
+  "name": "simple-html-page",
+  "version": "1.0.0",
+  "description": "Node.js에서 실행하는 간단한 HTML 웹페이지",
+  "private": true,
+  "scripts": {
+    "start": "node -e \"require('http').createServer((req,res)=>{require('fs').readFile('index.html',(err,data)=>{res.writeHead(err?500:200,{'Content-Type':'text/html; charset=utf-8'});res.end(err?'Server Error':data);});}).listen(3000,()=>console.log('http://localhost:3000'));\""
+  }
+}
