@@ -1,134 +1,260 @@
-/* CSS 커스텀 프로퍼티로 테마 통합 */
 :root {
-    --color-primary: #2563eb;
-    --color-primary-dark: #1d4ed8;
-    --color-text-muted: #334155;
-    --color-text-secondary: #475569;
-    --color-text-light: #64748b;
-    --color-text-dark: #1f2937;
-    --color-border: #cbd5e1;
-    --color-bg-light: #eff6ff;
-    --color-bg-form: #fff;
-    --color-bg-page-start: #e9f2ff;
-    --color-bg-page-mid: #f6f9fc;
-    --color-bg-page-end: #eef3f8;
-    --color-success-bg: #ecfdf5;
-    --color-success-text: #065f46;
-    --color-success-border: #a7f3d0;
-    --color-warning-bg: #fffbeb;
-    --color-warning-text: #92400e;
-    --color-warning-border: #fde68a;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 20px;
-    --padding-form: 14px 16px;
-    --padding-card: 18px;
-    --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.08);
+    --color-bg-1: #081120;
+    --color-bg-2: #0f172a;
+    --color-surface: rgba(255, 255, 255, 0.09);
+    --color-surface-strong: rgba(255, 255, 255, 0.14);
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-text: #e5eefc;
+    --color-muted: #b4c2d3;
+    --color-primary: #60a5fa;
+    --color-primary-strong: #2563eb;
+    --color-success-bg: rgba(16, 185, 129, 0.16);
+    --color-success-text: #b7f7d7;
+    --color-warning-bg: rgba(245, 158, 11, 0.18);
+    --color-warning-text: #fde68a;
+    --shadow: 0 28px 80px rgba(2, 6, 23, 0.45);
+    --radius-xl: 28px;
+    --radius-lg: 20px;
+    --radius-md: 14px;
 }
 
-/* 기본 여백을 제거하고 전체 페이지 배경을 설정합니다. */
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
+    min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+    color: var(--color-text);
     background:
-        radial-gradient(circle at top, var(--color-bg-page-start) 0%, var(--color-bg-page-mid) 40%, var(--color-bg-page-end) 100%);
-    color: var(--color-text-dark);
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 28%),
+        linear-gradient(160deg, var(--color-bg-1), var(--color-bg-2) 55%, #111827);
+    overflow-x: hidden;
 }
 
-/* 화면 전체를 감싸는 레이아웃입니다. */
+.bg-orb {
+    position: fixed;
+    inset: auto;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(26px);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 14s ease-in-out infinite;
+}
+
+.bg-orb-1 {
+    top: -120px;
+    left: -80px;
+    background: rgba(96, 165, 250, 0.28);
+}
+
+.bg-orb-2 {
+    bottom: -120px;
+    right: -100px;
+    background: rgba(45, 212, 191, 0.22);
+    animation-delay: -6s;
+}
+
 .page {
-    width: min(1000px, calc(100% - 32px));
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 32px));
     margin: 0 auto;
-    padding: 32px 0 48px;
+    padding: 32px 0 56px;
 }
 
-/* 카드 공통 스타일입니다. */
 .card {
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: linear-gradient(180deg, var(--color-surface-strong), var(--color-surface));
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-card);
-    backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
 }
 
 .hero {
-    padding: 32px;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 28px;
+    padding: 28px;
+    align-items: stretch;
 }
 
-.eyebrow {
-    margin: 0 0 8px;
-    color: var(--color-primary);
+.hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 8px 12px 6px;
+}
+
+.eyebrow,
+.section-kicker,
+.card-label {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 14px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #dbeafe;
+    font-size: 0.8rem;
     font-weight: 700;
-    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
 }
 
 h1 {
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+    font-size: clamp(2.5rem, 6vw, 4.9rem);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
 }
 
-.description {
-    margin: 10px 0 0;
-    color: var(--color-text-secondary);
-    font-size: 1.05rem;
+.lead {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #f8fbff;
 }
 
-.divider {
-    border: none;
-    height: 1px;
-    margin: 24px 0;
-    background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+.sublead {
+    max-width: 56ch;
+    margin-bottom: 22px;
+    color: var(--color-muted);
+    line-height: 1.8;
 }
+
+.hero-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hero-badges span {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fbff;
+    font-size: 0.92rem;
+}
+
+.hero-panel {
+    position: relative;
+    padding: 18px;
+    border-radius: calc(var(--radius-xl) - 6px);
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.58)),
+        radial-gradient(circle at top, rgba(96, 165, 250, 0.28), transparent 44%);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    overflow: hidden;
+}
+
+.hero-panel::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -25% auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: rgba(96, 165, 250, 0.12);
+    filter: blur(12px);
+}
+
+.panel-top {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.panel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { background: #fb7185; }
+.dot-yellow { background: #fbbf24; }
+.dot-green { background: #34d399; }
 
 .guide {
-    margin: 0 0 18px;
-    color: var(--color-text-muted);
+    margin-bottom: 18px;
+    color: #d6e4f5;
+    line-height: 1.7;
+}
+
+.form-card {
+    padding: 18px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.field-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+    color: #cbd5e1;
+    font-weight: 700;
 }
 
 .form-row {
     display: flex;
     gap: 12px;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
 }
 
 input {
-    width: min(100%, 360px);
+    flex: 1 1 220px;
+    min-width: 0;
     padding: 14px 16px;
-    border: 1px solid var(--color-border);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-md);
+    background: rgba(15, 23, 42, 0.72);
+    color: var(--color-text);
     font-size: 1rem;
     outline: none;
-    background: var(--color-bg-form);
+}
+
+input::placeholder {
+    color: #94a3b8;
 }
 
 input:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    border-color: rgba(96, 165, 250, 0.75);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
 }
 
 button {
+    padding: 14px 20px;
     border: none;
     border-radius: var(--radius-md);
-    padding: var(--padding-form);
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
     color: #fff;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 14px 24px rgba(37, 99, 235, 0.28);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
 }
 
 button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 10px 18px rgba(37, 99, 235, 0.22);
+    filter: brightness(1.05);
 }
 
 button:active {
@@ -137,112 +263,158 @@ button:active {
 
 button:focus-visible,
 input:focus-visible {
-    outline: 3px solid rgba(59, 130, 246, 0.32);
+    outline: 3px solid rgba(96, 165, 250, 0.45);
     outline-offset: 2px;
 }
 
-.message-box {
-    display: none;
-    margin: 20px auto 0;
-    padding: var(--padding-form);
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    text-align: left;
-    max-width: 560px;
+.result-area {
+    margin-top: 16px;
+    min-height: 62px;
 }
 
-.message-box.success {
-    display: block;
+.result-area .success,
+.result-area .warning {
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.result-area .success {
     background: var(--color-success-bg);
     color: var(--color-success-text);
-    border: 1px solid var(--color-success-border);
+    border: 1px solid rgba(52, 211, 153, 0.28);
 }
 
-.message-box.warning {
-    display: block;
+.result-area .warning {
     background: var(--color-warning-bg);
     color: var(--color-warning-text);
-    border: 1px solid var(--color-warning-border);
+    border: 1px solid rgba(251, 191, 36, 0.3);
 }
 
-.section-block {
-    margin-top: 24px;
-    padding: 28px 24px;
-}
-
-.section-block h2 {
-    margin: 0 0 18px;
-    font-size: 1.4rem;
-}
-
-.step-grid {
+.grid-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
+    margin-top: 18px;
 }
 
-.step-card {
-    padding: var(--padding-card);
+.info-card {
+    padding: 22px;
+}
+
+.info-card h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.info-card p {
+    margin-bottom: 0;
+    color: var(--color-muted);
+    line-height: 1.7;
+}
+
+.accent-blue {
+    border-color: rgba(96, 165, 250, 0.18);
+}
+
+.accent-mint {
+    border-color: rgba(45, 212, 191, 0.18);
+}
+
+.accent-sky {
+    border-color: rgba(167, 139, 250, 0.18);
+}
+
+.workflow-card,
+.diagram-card,
+.section-block {
+    margin-top: 18px;
+    padding: 28px;
+}
+
+.section-head {
+    margin-bottom: 20px;
+}
+
+.section-kicker {
+    margin-bottom: 10px;
+}
+
+.workflow-card h2,
+.diagram-card h2,
+.section-block h2 {
+    margin-bottom: 0;
+    font-size: 1.55rem;
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.workflow-item {
+    position: relative;
+    padding: 18px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, #ffffff, #f8fbff);
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 112px;
 }
 
-.step-card span {
+.workflow-item span {
     display: inline-block;
     margin-bottom: 10px;
-    color: var(--color-primary);
-    font-size: 0.85rem;
-    font-weight: 700;
+    color: #93c5fd;
+    font-size: 0.8rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
 }
 
-.step-card h3 {
-    margin: 0 0 8px;
-    font-size: 1.05rem;
-}
-
-.step-card p {
-    margin: 0;
-    color: var(--color-text-light);
-    line-height: 1.5;
+.workflow-item strong {
+    display: block;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #f8fbff;
 }
 
 .workflow-diagram {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .workflow-node {
-    padding: 12px 16px;
+    padding: 14px 18px;
     border-radius: 999px;
-    background: var(--color-bg-light);
-    border: 1px solid #bfdbfe;
-    font-weight: 700;
-    color: var(--color-primary-dark);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-weight: 800;
+    color: #f8fbff;
 }
 
 .workflow-arrow {
-    color: #94a3b8;
-    font-size: 1.2rem;
-    font-weight: 700;
+    color: #93c5fd;
+    font-size: 1.3rem;
+    font-weight: 900;
 }
 
 .run-list {
     margin: 0;
     padding-left: 20px;
-    color: var(--color-text-muted);
-    line-height: 1.8;
+    color: var(--color-muted);
+    line-height: 1.9;
 }
 
 .run-list code {
-    background: var(--color-bg-light);
     padding: 2px 6px;
     border-radius: 6px;
+    background: rgba(255, 255, 255, 0.09);
+    color: #e0f2fe;
 }
 
 .sr-only {
@@ -257,7 +429,25 @@ input:focus-visible {
     border: 0;
 }
 
-/* 작은 화면에서는 버튼과 입력창이 세로로 쌓이도록 조정합니다. */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(18px) scale(1.05);
+    }
+}
+
+@media (max-width: 980px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-section {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 640px) {
     .page {
         width: min(100%, calc(100% - 20px));
@@ -265,9 +455,18 @@ input:focus-visible {
     }
 
     .hero,
+    .workflow-card,
+    .diagram-card,
     .section-block {
-        padding-left: 18px;
-        padding-right: 18px;
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: clamp(2.2rem, 12vw, 3.4rem);
+    }
+
+    .form-row {
+        flex-direction: column;
     }
 
     input,

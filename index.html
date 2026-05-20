@@ -4,23 +4,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI 협업 개발 실습</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <h1>AI 협업 개발 실습</h1>
-    <p>첫 번째 웹 앱입니다.</p>
-    <hr>
-    <p>아래에 이름을 입력하고 버튼을 눌러 실습을 시작해보세요.</p>
-    <label for="nameInput">이름</label>
-    <input 
-      type="text" 
-      id="nameInput" 
-      placeholder="이름을 입력하세요"
-    >
-    <button id="startButton">실습 시작</button>
-   
-    <div id="resultArea"></div>
+  <div class="bg-orb bg-orb-1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb-2" aria-hidden="true"></div>
+
+  <main class="page">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p class="eyebrow">AI Collaboration Practice</p>
+        <h1>AI 협업 개발 실습</h1>
+        <p class="lead">첫 번째 웹 앱입니다.</p>
+        <p class="sublead">이 페이지는 이름 입력과 메시지 표시를 중심으로, AI 협업 흐름까지 함께 볼 수 있도록 만든 실습용 화면입니다.</p>
+
+        <div class="hero-badges" aria-label="실습 특징">
+          <span>입력 검증</span>
+          <span>즉시 피드백</span>
+          <span>접근성 고려</span>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="panel-top">
+          <span class="panel-dot dot-red"></span>
+          <span class="panel-dot dot-yellow"></span>
+          <span class="panel-dot dot-green"></span>
+        </div>
+
+        <p class="guide">아래에 이름을 입력하고 버튼을 눌러 실습을 시작해보세요.</p>
+
+        <div class="form-card">
+          <label for="nameInput" class="field-label">이름</label>
+          <div class="form-row">
+            <input
+              type="text"
+              id="nameInput"
+              placeholder="이름을 입력하세요"
+              autocomplete="name"
+            >
+            <button id="startButton" type="button">실습 시작</button>
+          </div>
+        </div>
+
+        <div id="resultArea" class="result-area" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="grid-section">
+      <article class="info-card card accent-blue">
+        <span class="card-label">Flow</span>
+        <h2>실습 흐름</h2>
+        <p>입력값을 확인하고, 상태에 따라 성공 또는 경고 메시지를 보여줍니다.</p>
+      </article>
+
+      <article class="info-card card accent-mint">
+        <span class="card-label">UX</span>
+        <h2>한눈에 보이는 피드백</h2>
+        <p>입력 결과가 즉시 화면에 반영되어 초보자도 동작을 쉽게 이해할 수 있습니다.</p>
+      </article>
+
+      <article class="info-card card accent-sky">
+        <span class="card-label">AI</span>
+        <h2>협업 구조 학습</h2>
+        <p>Codex와 개발자, Claude Code가 어떻게 이어지는지 시각적으로 살펴봅니다.</p>
+      </article>
+    </section>
+
+    <section class="card workflow-card">
+      <div class="section-head">
+        <span class="section-kicker">Workflow</span>
+        <h2>AI 협업 워크플로우</h2>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-item">
+          <span>step1</span>
+          <strong>요구사항 작성</strong>
+        </div>
+        <div class="workflow-item">
+          <span>step2</span>
+          <strong>Codex가 초안 코드 생성</strong>
+        </div>
+        <div class="workflow-item">
+          <span>step3</span>
+          <strong>사람 검토</strong>
+        </div>
+        <div class="workflow-item">
+          <span>step4</span>
+          <strong>Claude Code 분석</strong>
+        </div>
+        <div class="workflow-item">
+          <span>step5</span>
+          <strong>리팩토링</strong>
+        </div>
+        <div class="workflow-item">
+          <span>step6</span>
+          <strong>테스트 및 검증</strong>
+        </div>
+        <div class="workflow-item">
+          <span>step7</span>
+          <strong>Git 저장</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="card diagram-card">
+      <div class="section-head">
+        <span class="section-kicker">Diagram</span>
+        <h2>협업 구조도</h2>
+      </div>
+
+      <div class="workflow-diagram" aria-label="협업 구조도">
+        <div class="workflow-node">Codex</div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-node">개발자</div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-node">Claude Code</div>
+        <div class="workflow-arrow" aria-hidden="true">→</div>
+        <div class="workflow-node">개발자</div>
+      </div>
+    </section>
+
+    <section class="card section-block">
+      <div class="section-head">
+        <span class="section-kicker">Guide</span>
+        <h2>실행 방법</h2>
+      </div>
+      <ol class="run-list">
+        <li>파일 3개를 같은 폴더에 둡니다: <code>index.html</code>, <code>style.css</code>, <code>script.js</code>.</li>
+        <li><code>index.html</code>을 브라우저에서 엽니다.</li>
+        <li>입력창에 이름을 적고 <strong>실습 시작</strong> 버튼을 눌러 확인합니다.</li>
+      </ol>
+    </section>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
